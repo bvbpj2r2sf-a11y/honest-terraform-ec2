@@ -1,0 +1,9 @@
+resource "aws_instance" "app_server" {
+  ami           = "ami-0e5df6fd7455a69b3"
+  instance_type = "t3.micro"
+  key_name = "Qsmem"
+
+  tags = {
+    Name = "honest-app"
+  }
+}
