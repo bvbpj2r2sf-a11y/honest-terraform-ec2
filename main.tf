@@ -1,9 +1,11 @@
 resource "aws_instance" "app_server" {
-  ami           = "ami-0e5df6fd7455a69b3"
-  instance_type = "t3.micro"
-  key_name = "Qsmem"
+  ami                    = var.ami
+  instance_type          = var.instance_type
+  key_name               = var.key_name
+  vpc_security_group_ids = [aws_security_group.honest_ec2_sg.id]
+  user_data              = filebase64("userdata.sh")
 
   tags = {
-    Name = "honest-app"
+    Name = "honest-app-${var.enviroment}"
   }
 }
